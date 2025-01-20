@@ -59,11 +59,11 @@ jobs:
           password: ${{secrets.DOCKER_HUB_ACCESS_TOKEN}}
       
       - name: Build Docker Image
-        if: sucess()
+        if: success()
         run: |
           docker build -t ${{secrets.DOCKER_HUB_USERNAME}}/emotion2:latest .
 
       - name: Push docker image to docker hub
-        if: sucess()
+        if: success()
         run: |
           docker push ${{secrets.DOCKER_HUB_USERNAME}}/emotion2:latest
