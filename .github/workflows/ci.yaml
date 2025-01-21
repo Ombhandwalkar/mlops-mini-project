@@ -83,4 +83,3 @@ jobs:
               -e DAGSHUB_PAT = ${{secrets.DAGSHUB_PAT}}\
               ${{secrets.DOCKER_HUB_USERNAME}}/emotion2:latest 
 
-              
