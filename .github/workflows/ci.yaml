@@ -67,3 +67,18 @@ jobs:
         if: success()
         run: |
           docker push ${{secrets.DOCKER_HUB_USERNAME}}/emotion2:latest
+
+      - name : Deploy on ECC2
+        if : sucess()
+        uses: appleboy/ssh-action@v0.1.5
+        with:   
+          host: ${{secrets.EC2_HOST}}
+          username: $${{secrets.EC2_USER}}
+          KEY: ${{secrets.EC2_SSH_KEY}}
+          script:
+            docker pull ${{secrets.DOCKER_HUB_USERNAME}}/emotion2:latest
+            docker stop my-app || true
+            docker rm my-app || true
+            docker run -p 80:5000 -name my-app\
+              -e DAGSHUB_PAT = ${{secrets.DAGSHUB_PAT}}\
+              ${{secrets.DAGSHUB_USERNAME}}/emotion2:latest 
