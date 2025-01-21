@@ -69,7 +69,7 @@ jobs:
           docker push ${{secrets.DOCKER_HUB_USERNAME}}/emotion2:latest
 
       - name : Deploy on ECC2
-        if : sucess()
+        if : success()
         uses: appleboy/ssh-action@v0.1.5
         with:   
           host: ${{secrets.EC2_HOST}}
