@@ -82,3 +82,5 @@ jobs:
             docker run -p 80:5000 --name my-app\
               -e DAGSHUB_PAT = ${{secrets.DAGSHUB_PAT}}\
               ${{secrets.DOCKER_HUB_USERNAME}}/emotion2:latest 
+
+              
