@@ -82,7 +82,7 @@ jobs:
             aws configure set aws_secret_access_key ${{secrets.AWS_SECRET_ACCESS_KEY}}
             aws configure set default.region us-east-1
             aws ecr-public get-login-password --region us-east-1 | docker login --username AWS --password-stdin public.ecr.aws/b2r6l3l6
-            docker pull public.ecr.aws/b2r6l3l6/om-docker:latest
+            docker pull public.ecr.aws/b2r6l3l6/om-docker:latest    
             docker stop my-app || true
             docker rm my-app  || true
             docker run -p 80:5000  -e DAGSHUB_PAT = ${{secrets.DAGSHUB_PAT}} --name om-app public.ecr.aws/b2r6l3l6/om-docker:latest
